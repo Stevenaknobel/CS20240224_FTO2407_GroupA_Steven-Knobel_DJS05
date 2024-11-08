@@ -34,4 +34,9 @@ class Store {
     // Add new listener to subscribers list
     this.listeners.push(listener);
   }
+
+  //notify all subscribers (the listeners) about the different state changes
+  notifySubscribers() {
+    this.listeners.forEach(listener => listener(this.state));
+  }
 }
