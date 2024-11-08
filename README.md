@@ -67,3 +67,26 @@ Ensure your code is well-commented and adheres to best practices for readability
 - **Documentation**: Clarity of your approach and reflections in the README.md.
 
 This challenge is an excellent opportunity to demonstrate your understanding of state management concepts and functional programming principles. Good luck!
+
+How to run the code
+  in order to run the code you very simply just need call what action you would like to occur, as shown below.
+  const addAction = () => ({ type: 'ADD' });
+  const subtractAction = () => ({ type: 'SUBTRACT' });
+  const resetAction = () => ({ type: 'RESET' });
+
+  You create a store dispatch with either addAction, SubtractAction or resetAction depending on what you are trying to achieve
+    store.dispatch(addAction());
+
+My approach
+  I create a store class that holds the current state with the following methods for interacting with it
+    getState(): Returns the current state.
+    dispatch(action): Dispatches actions to modify the state.
+    subscribe(listener): Allows functions to subscribe to state updates.
+    notifySubscribers(): Notifies all subscribed listeners when the state changes.
+
+  the state store then changes based on which action is called, the actions being add, subtract or reset for example
+
+Challenges faced
+  Initially the code was not working due to me directly changing the state through the this.state.count, however it cause the code to mutate and not perform each action individually (IE;always just end in reseting)
+    In order to fix it i modified the code so that instead of directly modifying the state, i create a copy of the state and then update the copy
+        let newState = { ...this.state };

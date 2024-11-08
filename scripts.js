@@ -13,22 +13,30 @@ class Store {
   }
   // Dispatch action to modify the state for adding, subtracting and reseting
   dispatch(action) {
+
+    //make a copy of the current state
+    let newState = { ...this.state };
     switch (action.type) {
       case 'ADD':
-        this.state.count += 1;
+        newState.count += 1;
         break;
       case 'SUBTRACT':
-        this.state.count -= 1;
+        newState.count -= 1;
         break;
       case 'RESET':
-        this.state.count = 0;
+        newState.count = 0;
         break;
       default:
         break;
     }
+
+    //update the state with the new state
+    this.state = newState;
+
     // Notify listeners after state change
     this.notifySubscribers();
   }
+
   //Subscribe to the state changes
   subscribe(listener) {
     // Add new listener to subscribers list
