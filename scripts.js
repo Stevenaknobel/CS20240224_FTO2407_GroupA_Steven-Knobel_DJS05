@@ -40,3 +40,24 @@ class Store {
     this.listeners.forEach(listener => listener(this.state));
   }
 }
+
+//create functions to create the actions for adding, subtracting and reseting
+const addAction = () => ({ type: 'ADD' });
+const subtractAction = () => ({ type: 'SUBTRACT' });
+const resetAction = () => ({ type: 'RESET' });
+
+const store = new Store();
+
+// Subscribe to state changes and log the new state to the console
+store.subscribe(state => {
+  console.log('State updated:', state);
+});
+//Scenario 1
+console.log('Initial State:', store.getState());
+//Scenario 2
+store.dispatch(addAction());
+store.dispatch(addAction());
+//Scenario 3
+store.dispatch(subtractAction());
+//Scenario 1
+store.dispatch(resetAction());
